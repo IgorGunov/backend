@@ -1,5 +1,6 @@
 package onlineShop.controller.admin;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import onlineShop.entity.FeedBack;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,15 +16,17 @@ public class FeedBackController {
     @Operation(
             summary = "возвращает все отзывы"
     )
-    @GetMapping(value = "get")
-    public List<FeedBack> getAllFeedBacks(){
-        return Arrays.asList(new FeedBack(), new FeedBack());}
+    @GetMapping("get/all")
+    public List<FeedBack> getAllFeedBacks() {
+        return Arrays.asList(new FeedBack(), new FeedBack());
+    }
 
     @Operation(
             summary = "добавляет новый отзыв в бд"
     )
     @PostMapping("/create")
-    public void createFeedBack(@RequestBody FeedBack feedBack){
+    public void createFeedBack(
+            @RequestBody @Parameter(description = "Ответ от поддержки") FeedBack feedBack) {
 
     }
 
@@ -31,7 +34,8 @@ public class FeedBackController {
             summary = "изменяет отзыв в бд"
     )
     @PutMapping("/update")
-    public void updateFeedBack(@RequestBody FeedBack feedBack){
+    public void updateFeedBack(
+            @RequestBody @Parameter(description = "Ответ от поддержки") FeedBack feedBack) {
 
     }
 
@@ -39,7 +43,8 @@ public class FeedBackController {
             summary = "удаляет отзыв из бд"
     )
     @DeleteMapping("/delete")
-    public  void  deleteFeedBack(@RequestBody FeedBack feedBack){
+    public void deleteFeedBack(
+            @RequestBody @Parameter(description = "Ответ от поддержки") FeedBack feedBack) {
 
     }
 }

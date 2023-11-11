@@ -5,8 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -29,11 +30,6 @@ public class Category {
     @Column(name = "count_nested_categories")
     private int countNestedCategories;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "category_product",
-            joinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")}
-    )
-    private Set<Product> products = new HashSet<>();
+    @ManyToMany(mappedBy = "categories")
+    private List<Product> products = new ArrayList<>();
 }

@@ -4,6 +4,8 @@ import lombok.Data;
 
 import jakarta.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -31,4 +33,10 @@ public class Client {
 
     @Column(name = "date_registration")
     private Date dateRegistration;
+
+    @ManyToMany(mappedBy = "clientBasket")
+    private List<Product> basket = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "clientLikes")
+    private List<Product> clientLikes = new ArrayList<>();
 }

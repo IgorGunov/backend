@@ -1,6 +1,7 @@
 package onlineShop.controller.admin;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import onlineShop.entity.Characteristica;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +17,17 @@ public class CharacteristicaController {
     @Operation(
             summary = "возвращает все характеристики"
     )
-    @GetMapping(value = "get")
-    public List<Characteristica> getAllCharacteristics(){return Arrays.asList(new Characteristica(), new Characteristica());}
+    @GetMapping("get/all")
+    public List<Characteristica> getAllCharacteristics() {
+        return Arrays.asList(new Characteristica(), new Characteristica());
+    }
 
     @Operation(
             summary = "добавляет новую характеристику в бд"
     )
     @PostMapping("/create")
-    public void createCharacteristica(@RequestBody Characteristica characteristica){
+    public void createCharacteristica(
+            @RequestBody @Parameter(description = "Характеристика") Characteristica characteristica) {
 
     }
 
@@ -31,7 +35,8 @@ public class CharacteristicaController {
             summary = "изменяет характеристику в бд"
     )
     @PutMapping("/update")
-    public void updateCharacteristica(@RequestBody Characteristica characteristica){
+    public void updateCharacteristica(
+            @RequestBody @Parameter(description = "Характеристика") Characteristica characteristica) {
 
     }
 
@@ -39,9 +44,8 @@ public class CharacteristicaController {
             summary = "удаляет характеристику из бд"
     )
     @DeleteMapping("/delete")
-    public void deleteCharacteristica(@RequestBody Characteristica characteristica){
+    public void deleteCharacteristica(
+            @RequestBody @Parameter(description = "Характеристика") Characteristica characteristica) {
 
     }
-
-
 }

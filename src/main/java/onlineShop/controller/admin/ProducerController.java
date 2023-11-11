@@ -1,6 +1,7 @@
 package onlineShop.controller.admin;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import onlineShop.entity.Producer;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +16,17 @@ public class ProducerController {
     @Operation(
             summary = "возвращает всех производителей"
     )
-    @GetMapping(value = "get")
-    public List<Producer> getAllProducers(){
-        return Arrays.asList(new Producer(), new Producer());}
+    @GetMapping("get/all")
+    public List<Producer> getAllProducers() {
+        return Arrays.asList(new Producer(), new Producer());
+    }
 
     @Operation(
             summary = "добавляет нового производителя в бд"
     )
     @PostMapping("/create")
-    public void createProducer(@RequestBody Producer producer){
+    public void createProducer(
+            @RequestBody @Parameter(description = "Товар") Producer producer) {
 
     }
 
@@ -31,7 +34,8 @@ public class ProducerController {
             summary = "изменяет производителя в бд"
     )
     @PutMapping("/update")
-    public void updateProducer(@RequestBody Producer producer){
+    public void updateProducer(
+            @RequestBody @Parameter(description = "Товар") Producer producer) {
 
     }
 
@@ -39,7 +43,8 @@ public class ProducerController {
             summary = "удаляет производителя из бд"
     )
     @DeleteMapping("/delete")
-    public  void  deleteProducer(@RequestBody Producer producer){
+    public void deleteProducer(
+            @RequestBody @Parameter(description = "Товар") Producer producer) {
 
     }
 }

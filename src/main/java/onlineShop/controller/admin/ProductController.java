@@ -18,7 +18,7 @@ public class ProductController {
     @Operation(
             summary = "возвращает все товары"
     )
-    @GetMapping(value = "get")
+    @GetMapping("get/all")
     public List<Product> getAllProducts() {
         return Arrays.asList(new Product(), new Product());
     }

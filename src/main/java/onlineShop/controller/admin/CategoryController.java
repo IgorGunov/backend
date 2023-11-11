@@ -1,6 +1,7 @@
 package onlineShop.controller.admin;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import onlineShop.entity.Category;
 import org.springframework.web.bind.annotation.*;
@@ -16,15 +17,17 @@ public class CategoryController {
     @Operation(
             summary = "возвращает все категории"
     )
-    @GetMapping(value = "get")
-    public List<Category> getAllCategories(){
-        return Arrays.asList(new Category(), new Category());}
+    @GetMapping("get/all")
+    public List<Category> getAllCategories() {
+        return Arrays.asList(new Category(), new Category());
+    }
 
     @Operation(
             summary = "добавляет новую категорию в бд"
     )
     @PostMapping("/create")
-    public void createCategory(@RequestBody Category category){
+    public void createCategory(
+            @RequestBody @Parameter(description = "Категория") Category category) {
 
     }
 
@@ -32,7 +35,8 @@ public class CategoryController {
             summary = "изменяет категорию в бд"
     )
     @PutMapping("/update")
-    public void updateCategory(@RequestBody Category category){
+    public void updateCategory(
+            @RequestBody @Parameter(description = "Категория") Category category) {
 
     }
 
@@ -40,7 +44,8 @@ public class CategoryController {
             summary = "удаляет категорию из бд"
     )
     @DeleteMapping("/delete")
-    public  void  deleteCategory(@RequestBody Category category){
+    public void deleteCategory(
+            @RequestBody @Parameter(description = "Категория") Category category) {
 
     }
 }

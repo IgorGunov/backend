@@ -1,5 +1,6 @@
 package onlineShop.controller.admin;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import onlineShop.entity.Client;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,7 +17,7 @@ public class ClientController {
     @Operation(
             summary = "возращает всех клиентов"
     )
-    @GetMapping(value = "get")
+    @GetMapping("get/all")
     public List<Client> getAllClients(){return Arrays.asList(new Client(), new Client());}
 
 
@@ -24,7 +25,8 @@ public class ClientController {
             summary = "добавляет нового клиента в бд"
     )
     @PostMapping("/create")
-    public void createClient(@RequestBody Client client) {
+    public void createClient(
+            @RequestBody @Parameter(description = "Клиент") Client client) {
 
     }
 
@@ -32,7 +34,8 @@ public class ClientController {
             summary = "изменяет клиента в бд"
     )
     @PutMapping("/update")
-    public void updateClient(@RequestBody Client client){
+    public void updateClient(
+            @RequestBody @Parameter(description = "Клиент") Client client){
 
     }
 
@@ -40,7 +43,8 @@ public class ClientController {
             summary = "удаляет клиента из бд"
     )
     @DeleteMapping("/delete")
-    public void deleteClient(@RequestBody Client client){
+    public void deleteClient(
+            @RequestBody @Parameter(description = "Клиент") Client client){
 
     }
 

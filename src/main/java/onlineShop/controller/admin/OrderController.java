@@ -1,5 +1,6 @@
 package onlineShop.controller.admin;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import onlineShop.entity.Order;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -15,15 +16,17 @@ public class OrderController {
     @Operation(
             summary = "возвращает все заказы"
     )
-    @GetMapping(value = "get")
-    public List<Order> getAllCategories(){
-        return Arrays.asList(new Order(), new Order());}
+    @GetMapping("get/all")
+    public List<Order> getAllCategories() {
+        return Arrays.asList(new Order(), new Order());
+    }
 
     @Operation(
             summary = "добавляет новый заказ в бд"
     )
     @PostMapping("/create")
-    public void createOrder(@RequestBody Order order){
+    public void createOrder(
+            @RequestBody @Parameter(description = "Заказ") Order order) {
 
     }
 
@@ -31,7 +34,8 @@ public class OrderController {
             summary = "изменяет заказ в бд"
     )
     @PutMapping("/update")
-    public void updateOrder(@RequestBody Order order){
+    public void updateOrder(
+            @RequestBody @Parameter(description = "Заказ") Order order) {
 
     }
 
@@ -39,7 +43,8 @@ public class OrderController {
             summary = "удаляет заказ из бд"
     )
     @DeleteMapping("/delete")
-    public  void  deleteOrder(@RequestBody Order order){
+    public void deleteOrder(
+            @RequestBody @Parameter(description = "Заказ") Order order) {
 
     }
 }

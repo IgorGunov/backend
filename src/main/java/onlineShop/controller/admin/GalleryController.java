@@ -1,5 +1,6 @@
 package onlineShop.controller.admin;
 
+import io.swagger.v3.oas.annotations.Parameter;
 import onlineShop.entity.Gallery;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -16,15 +17,17 @@ public class GalleryController {
     @Operation(
             summary = "возвращает все видео/изображения"
     )
-    @GetMapping(value = "get")
-    public List<Gallery> getAllGalleries(){
-        return Arrays.asList(new Gallery(), new Gallery());}
+    @GetMapping("get/all")
+    public List<Gallery> getAllGalleries() {
+        return Arrays.asList(new Gallery(), new Gallery());
+    }
 
     @Operation(
             summary = "добавляет новое видео/изображение в бд"
     )
     @PostMapping("/create")
-    public void createGallery(@RequestBody Gallery gallery){
+    public void createGallery(
+            @RequestBody @Parameter(description = "Галерея(фотография, видео)") Gallery gallery) {
 
     }
 
@@ -32,7 +35,8 @@ public class GalleryController {
             summary = "изменяет видео/изображение в бд"
     )
     @PutMapping("/update")
-    public void updateGallery(@RequestBody Gallery gallery){
+    public void updateGallery(
+            @RequestBody @Parameter(description = "Галерея(фотография, видео)") Gallery gallery) {
 
     }
 
@@ -40,7 +44,8 @@ public class GalleryController {
             summary = "удаляет видео/изображение из бд"
     )
     @DeleteMapping("/delete")
-    public  void  deleteGallery(@RequestBody Gallery gallery){
+    public void deleteGallery(
+            @RequestBody @Parameter(description = "Галерея(фотография, видео)") Gallery gallery) {
 
     }
 }

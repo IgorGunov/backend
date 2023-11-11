@@ -1,6 +1,7 @@
 package onlineShop.controller.admin;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import onlineShop.entity.Address;
 import org.springframework.web.bind.annotation.*;
@@ -15,15 +16,17 @@ public class AddressController {
     @Operation(
             summary = "возвращает все адреса"
     )
-    @GetMapping(value = "get")
-    public List<Address> getAllAddresses(){
-        return Arrays.asList(new Address(), new Address());}
+    @GetMapping("/get/all")
+    public List<Address> getAllAddresses() {
+        return Arrays.asList(new Address(), new Address());
+    }
 
     @Operation(
             summary = "добавляет новый адрес в бд"
     )
     @PostMapping("/create")
-    public void createAddress(@RequestBody Address address){
+    public void createAddress(
+            @RequestBody @Parameter(description = "Адресс") Address address) {
 
     }
 
@@ -31,7 +34,8 @@ public class AddressController {
             summary = "изменяет адрес в бд"
     )
     @PutMapping("/update")
-    public void updateAddress(@RequestBody Address address){
+    public void updateAddress(
+            @RequestBody @Parameter(description = "Адресс") Address address) {
 
     }
 
@@ -39,7 +43,8 @@ public class AddressController {
             summary = "удаляет адрес из бд"
     )
     @DeleteMapping("/delete")
-    public  void  deleteAddress(@RequestBody Address address){
+    public void deleteAddress(
+            @RequestBody @Parameter(description = "Адресс") Address address) {
 
     }
 }

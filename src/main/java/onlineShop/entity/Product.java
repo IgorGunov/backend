@@ -5,7 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import jakarta.persistence.*;
+
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -20,10 +23,6 @@ public class Product {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "characteristica")
-    Characteristica characteristica = new Characteristica();
-
     private int price;
 
     private boolean markdown;
@@ -37,10 +36,46 @@ public class Product {
 
     private int count;
 
-    @OneToOne
-    @JoinColumn(name = "producer_id", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "producer_id")
     private Producer producer;
 
-    @ManyToMany(mappedBy = "products")
-    private Set<Category> categories = new HashSet<>();
+    @ManyToOne
+    @JoinColumn(name = "characteristica_id")
+    private Characteristica characteristica;
+
+
+
+
+    @ManyToMany(mappedBy = "listProduct")
+    @JoinTable(
+            name = "connection_category_and_product",
+            joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "category_id", referencedColumnName = "id") }
+    )
+    private List<Category> categories = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "listProduct")
+    @JoinTable(
+            name = "basket",
+            joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "basket_id", referencedColumnName = "id") }
+    )
+    private List<Client> clientBasket = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "listProduct")
+    @JoinTable(
+            name = "likes",
+            joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "like_id", referencedColumnName = "id") }
+    )
+    private List<Client> clientLikes = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "listProduct")
+    @JoinTable(
+            name = "relation_order_and_product",
+            joinColumns = { @JoinColumn(name = "product_id", referencedColumnName = "id") },
+            inverseJoinColumns = { @JoinColumn(name = "order_id", referencedColumnName = "id") }
+    )
+    private List<Order> listOrder = new ArrayList<>();
 }

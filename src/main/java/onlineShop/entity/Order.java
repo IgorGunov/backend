@@ -4,6 +4,8 @@ import lombok.Data;
 
 import jakarta.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -32,4 +34,7 @@ public class Order {
     @JoinColumn(name = "id")
     @Column(name = "address_id")
     private Address address;
+
+    @ManyToMany(mappedBy = "listOrder")
+    private List<Product> listProduct = new ArrayList<>();
 }
